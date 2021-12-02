@@ -1,0 +1,13 @@
+REM FOR /F "TOKENS=1 DELIMS=." %%i IN ('DATE /T') DO (set DAY=%%i)
+REM FOR /F "TOKENS=2" %%j IN ("%DAY%") DO (SET DAY=%%j)
+REM FOR /F "TOKENS=2 DELIMS=." %%i IN ('DATE /T') DO (set MONTH=%%i)
+REM FOR /F "TOKENS=3 DELIMS=." %%i IN ('DATE /T') DO (set YEAR=%%i)
+REM FOR /F "TOKENS=1 " %%i IN ("%YEAR%") DO (set YEAR=%%i)
+REM set DIRNAME=%YEAR%.%MONTH%.%DAY%
+set DIRNAME=%DATE:~0,2%.%DATE:~3,2%.%DATE:~6,4%
+
+IF NOT EXIST %DIRNAME% MKDIR %DIRNAME%
+
+MOVE *.png %DIRNAME%
+MOVE *.jpg %DIRNAME%
+MOVE *.PSD %DIRNAME%
